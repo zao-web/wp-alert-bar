@@ -33,6 +33,11 @@ window.WPAlertBar = window.WPAlertBar || {};
 	};
 
 	app.maybe_show_bar = function() {
+
+		if ( app.$.alert.find( 'p' ).text().length === 0 ) {
+			return;
+		}
+
 		app.$.alert.toggle( -1 === $.inArray( app.$.hash, app.$.cookies ) );
 	};
 
