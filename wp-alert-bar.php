@@ -100,11 +100,26 @@ add_action( 'customize_register', __NAMESPACE__ . '\register_selective_refresh_p
 
 function enqueue_customizer_script() {
 	wp_enqueue_script(
-		  'hb-ryla-customizer',			//Give the script an ID
+		  'wp-alert-bar-customizer',			//Give the script an ID
 		  plugin_dir_url( __FILE__ ).'/theme-customizer.js',//Point to file
 		  array( 'jquery','customize-preview' ),	//Define dependencies
 		  time(),						//Define a version (optional)
 		  true						//Put script in footer?
 	);
 }
+
 add_action( 'customize_preview_init', __NAMESPACE__ . '\enqueue_customizer_script' );
+
+function enqueue_alert_script() {
+	wp_register_script( 'cookies', 'https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js' );
+
+	wp_enqueue_script(
+		  'wp-alert-bar',			//Give the script an ID
+		  plugin_dir_url( __FILE__ ).'/wp-alert-bar.js',//Point to file
+		  array( 'jquery','cookies' ),	//Define dependencies
+		  time(),						//Define a version (optional)
+		  true						//Put script in footer?
+	);
+}
+
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_alert_script' );
