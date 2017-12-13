@@ -51,6 +51,22 @@ function register_selective_refresh_partial( \WP_Customize_Manager $wp_customize
 		'transport' => 'postMessage',
 	) );
 
+	$wp_customize->add_setting( 'wp_alert_link_color', array(
+		'type' => 'option',
+		'capability' => 'manage_options',
+		'default' => '#ffffff',
+		'sanitize_callback' => 'esc_url',
+		'transport' => 'postMessage',
+	) );
+
+	$wp_customize->add_setting( 'wp_alert_link_hover_color', array(
+		'type' => 'option',
+		'capability' => 'manage_options',
+		'default' => '#d9d9d9',
+		'sanitize_callback' => 'esc_url',
+		'transport' => 'postMessage',
+	) );
+
 	$wp_customize->add_control(
         'zao_alert_bar',
         array(
@@ -80,6 +96,30 @@ function register_selective_refresh_partial( \WP_Customize_Manager $wp_customize
 			'label'      => __( 'Alert Bar Background Color', 'mytheme' ),
 			'section'    => 'zao_alert_bar',
 			'settings'   => 'wp_alert_bg_color',
+		) )
+	);
+
+	$wp_customize->add_control(
+		new \WP_Customize_Color_Control(
+		$wp_customize,
+		'wp_alert_link_color',
+		array(
+			'label'      => __( 'Alert Bar Link Color', 'mytheme' ),
+			'description' => 'If you entered a link in the top field (Alert Message), this will control the link color.',
+			'section'    => 'zao_alert_bar',
+			'settings'   => 'wp_alert_link_color',
+		) )
+	);
+
+	$wp_customize->add_control(
+		new \WP_Customize_Color_Control(
+		$wp_customize,
+		'wp_alert_link_hover_color',
+		array(
+			'label'      => __( 'Alert Bar Link Hover Color', 'mytheme' ),
+			'description' => 'If you entered a link in the top field (Alert Message), this will control the link color when hovering over it.',
+			'section'    => 'zao_alert_bar',
+			'settings'   => 'wp_alert_link_hover_color',
 		) )
 	);
 
