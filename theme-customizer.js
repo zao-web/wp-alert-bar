@@ -27,4 +27,28 @@
 		} );
 	} );
 
+	//Update site link color in real time...
+	wp.customize( 'wp_alert_link_color', function( value ) {
+		value.bind( function( newval ) {
+			$('.site-notice a').css('color', newval );
+			$('.site-notice a').css('border-bottom', '1px solid ' + newval );
+		} );
+	} );
+
+	//Update site link hover color in real time...
+	wp.customize( 'wp_alert_link_hover_color', function( value ) {
+        value.bind( function( newval ) {
+            var style, el;
+            style = '<style class="hover-styles">.site-notice a:hover { color: ' + newval + '!important; border-bottom: 1px solid ' + newval + '!important;}</style>'; // build the style element
+            el =  $( '.hover-styles' ); // look for a matching style element that might already be there
+
+            // add the style element into the DOM or replace the matching style element that is already there
+            if ( el.length ) {
+                el.replaceWith( style ); // style element already exists, so replace it
+            } else {
+                $( 'head' ).append( style ); // style element doesn't exist so add it
+            }
+        } );
+    } );
+
 } )( jQuery );
