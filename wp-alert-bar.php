@@ -51,6 +51,14 @@ function register_selective_refresh_partial( \WP_Customize_Manager $wp_customize
 		'transport' => 'postMessage',
 	) );
 
+	$wp_customize->add_setting( 'wp_alert_new_tab', array(
+		'type' => 'option',
+		'capability' => 'manage_options',
+		'default' => '',
+		'sanitize_callback' => 'esc_url',
+		'transport' => 'postMessage',
+	) );
+
 	$wp_customize->add_control(
         'zao_alert_bar',
         array(
@@ -69,6 +77,16 @@ function register_selective_refresh_partial( \WP_Customize_Manager $wp_customize
 			'section'  => 'zao_alert_bar',
 			'settings' => 'wp_alert_link',
 			'type'     => 'text'
+        )
+	);
+
+	$wp_customize->add_control(
+        'wp_alert_new_tab',
+        array(
+            'label'    => __( 'Open link in new tab?' ),
+			'section'  => 'zao_alert_bar',
+			'settings' => 'wp_alert_new_tab',
+			'type'     => 'checkbox'
         )
 	);
 
