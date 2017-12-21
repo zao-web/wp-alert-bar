@@ -7,21 +7,12 @@ window.WPAlertBar = window.WPAlertBar || {};
 		app.$         = {};
 		app.$.alert   = $( '.site-notice' );
 		app.$.dismiss = app.$.alert.find( '.dashicons-dismiss' );
-		app.$.hash    = app.hash( app.$.alert.html() );
-
-		console.log( app.$.hash );
-
+		app.$.hash    = app.$.alert.length ? app.hash( app.$.alert.html() ) : 0;
 		app.$.cookies = Cookie.getJSON( 'wp-alerts' ) || [];
-
-		console.log( app.$.cookies );
 	};
 
 	app.hash = function( str ) {
 		var hash = 0, i, chr;
-
-		if ( str.length === 0 ) {
-			return hash;
-		}
 
 		for ( i = 0; i < str.length; i++ ) {
 			chr   = str.charCodeAt(i);
@@ -41,9 +32,13 @@ window.WPAlertBar = window.WPAlertBar || {};
 		app.$.alert.toggle( -1 === $.inArray( app.$.hash, app.$.cookies ) );
 	};
 
-	app.dismiss_alert = function() {
+	app.setCookies = function() {
 		app.$.cookies.push( app.$.hash );
 		Cookies.set( 'wp-alerts', app.$.cookies );
+	};
+
+	app.dismiss_alert = function() {
+		app.setCookies();
 		app.maybe_show_bar();
 	};
 
