@@ -6,7 +6,7 @@ stages:
     hosts: ['hac-web01.stg.hbint.io', 'hnc-web01.stg.hbint.io']
     branch: 'staging'
   prod:
-    hosts: ['hac-web01.stg.hbint.io', 'hnc-web01.stg.hbint.io']
+    hosts: ['hac-web01.prod.hbint.io', 'hnc-web01.prod.hbint.io']
     branch: 'production'
 
 
