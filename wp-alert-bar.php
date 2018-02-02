@@ -4,10 +4,13 @@
  * Description: Alert bar, driven by the Customizer.
  * Author: Justin Sainton, Zao
  * Plugin URL: https://zao.is
+ * Version: 0.1.0
  *
  * @package Zao_Alert_Bar
  */
 namespace Zao_Alert_Bar;
+
+define( 'ZAO_ALERT_BAR_VERSION', '0.1.0' );
 
 /**
  * Register selective refresh partial.
@@ -162,7 +165,7 @@ function enqueue_customizer_script() {
 		  'wp-alert-bar-customizer',
 		  plugin_dir_url( __FILE__ ).'/theme-customizer.js',
 		  array( 'jquery', 'customize-preview' ),
-		  time(),
+		  defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? time() : ZAO_ALERT_BAR_VERSION,
 		  true
 	);
 }
@@ -176,7 +179,7 @@ function enqueue_alert_script() {
 		  'wp-alert-bar',
 		  plugin_dir_url( __FILE__ ) . '/wp-alert-bar.js',
 		  array( 'jquery','cookies' ),
-		  time(),
+		  defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? time() : ZAO_ALERT_BAR_VERSION,
 		  true
 	);
 }
