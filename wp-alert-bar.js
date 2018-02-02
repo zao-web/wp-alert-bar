@@ -5,6 +5,7 @@ window.WPAlertBar = window.WPAlertBar || {};
 
 	app.cache = function() {
 		app.$         = {};
+		app.$.body   = $( document.body );
 		app.$.alert   = $( '.site-notice' );
 		app.$.dismiss = app.$.alert.find( '.dashicons-dismiss' );
 		app.$.hash    = app.$.alert.length ? app.hash( app.$.alert.html() ) : 0;
@@ -29,7 +30,11 @@ window.WPAlertBar = window.WPAlertBar || {};
 			return;
 		}
 
-		app.$.alert.toggleClass( 'hide-notice', -1 !== $.inArray( app.$.hash, app.$.cookies ) );
+		var hasCookie = -1 !== $.inArray( app.$.hash, app.$.cookies );
+
+		app.$.alert.toggleClass( 'hide-notice', hasCookie );
+		app.$.body.toggleClass( 'wp-alerts-hidden', hasCookie );
+		app.$.body.toggleClass( 'wp-alerts-visible', ! hasCookie );
 	};
 
 	app.setCookies = function() {
