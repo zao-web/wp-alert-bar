@@ -4,13 +4,13 @@
  * Description: Alert bar, driven by the Customizer.
  * Author: Justin Sainton, Zao
  * Plugin URL: https://zao.is
- * Version: 0.1.0
+ * Version: 0.1.1
  *
  * @package Zao_Alert_Bar
  */
 namespace Zao_Alert_Bar;
 
-define( 'ZAO_ALERT_BAR_VERSION', '0.1.0' );
+define( 'ZAO_ALERT_BAR_VERSION', '0.1.1' );
 
 /**
  * Register selective refresh partial.
