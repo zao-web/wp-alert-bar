@@ -29,7 +29,7 @@ window.WPAlertBar = window.WPAlertBar || {};
 			return;
 		}
 
-		app.$.alert.toggle( -1 === $.inArray( app.$.hash, app.$.cookies ) );
+		app.$.alert.toggleClass( 'hide-notice', -1 !== $.inArray( app.$.hash, app.$.cookies ) );
 	};
 
 	app.setCookies = function() {
