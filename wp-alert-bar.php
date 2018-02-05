@@ -187,11 +187,13 @@ function enqueue_alert_script() {
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_alert_script' );
 
 function add_body_class( $classes ) {
-	if ( ! empty( $_COOKIE['wp-alerts'] ) ) {
-		$classes[] = 'wp-alerts-hidden';
-	} else {
-		$classes[] = 'wp-alerts-visible';
+	$classes[] = ! empty( $_COOKIE['wp-alerts'] ) ? 'wp-alerts-hidden' : 'wp-alerts-visible';
+
+	$alert_text = get_option( 'zao_wp_alert_bar' );
+	if ( ! empty( $alert_text ) ) {
+		$classes[] = 'has-alert';
 	}
+
 	return $classes;
 }
 add_action( 'body_class', __NAMESPACE__ . '\add_body_class', 99999 );
